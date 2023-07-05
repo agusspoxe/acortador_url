@@ -7,26 +7,30 @@
 </head>
 
 <body>
-    <img src="images/equipoA.jpg">
+    <center>
+        <img src="static/images/logo.jpg">
+    </center>
     <h1>
         <p style="text-align: center;">Acortador de URL´s</p>
     </h1>
-
     <h3>
         <p style="text-align: center;">¿Que es acortar una URL´s?</p>
     </h3>
-
     <p style="text-align: center;">Es un servicio que
         permite convertir una URL larga en una URL corta, la cual redirecciona a la URL larga, o la
         URL original
     </p>
-
 
     <form action="/action" method="POST">
         <label for="url">Introduce tu URL:</label>
         <input type="text" id="url" name="url" placeholder="Ingrese la URL completa" required>
         <button type="submit">Acortar</button>
     </form>
+
+    <h3>URL acortada:</h3>
+    <p id="shortened-url"></p>
+    <p id="equipoA"></p>
+
     <table>
         <caption>Acortador de URL</caption>
         <tr>
@@ -41,9 +45,6 @@
 
         </tr>
     </table>
-
-    <h3>URL acortada:</h3>
-    <p id="equipoA"></p>
 
     <script type="text/javascript" src="{{ url_for('static', filename='js/javascript.js') }}"></script>
 </body>
