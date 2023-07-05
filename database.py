@@ -1,5 +1,6 @@
 import mysql.connector
 
+
 # try:
 #     connection = mysql.connector.connect(
 #         host = 'localhost',
@@ -55,11 +56,29 @@ except mysql.connector.Error as err:
 else:
     print("aqui meteremos el sql")
 
-    with cnx.cursor() as cursor:
-        # listamos las urls que tenemos
-        consultilla = cursor.execute("""
-        SELECT * FROM equipo_a.urls;
-        """)
+    cursor = cnx.cursor()
+    consultilla_corta = cursor.execute("""SELECT url_short FROM equipo_a.urls;""")
+    print(cursor)
+    resultado_corta = cursor.fetchone()
+    print(f"url cortita como yo..: {resultado_corta}")
+    consultilla_larga = cursor.execute("""SELECT url_large FROM equipo_a.urls;""")
+    resultado_larga = cursor.fetchone()
+    print(f"url larguita como turutu..: {resultado_larga}")
+  
+
+    # resultado_larga = cursor.te
+
+    # with cnx.cursor() as cursor:
+    #     # listamos las urls que tenemos
+    #     consultilla = cursor.execute("""
+    #     SELECT 
+    #         url_short
+    #     FROM equipo_a.urls;
+    #     """)
+        
+    #     urls = {}
+    #     for (url_corta) in cursor:
+    #         urls[]
 
         # print(consultilla)
     #   with cnx.cursor() as cursor:
