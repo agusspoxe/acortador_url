@@ -22,25 +22,4 @@ Este intercambia información con la base de datos "equipo_A" donde se realiza e
 De igual forma hemos incorporado el fichero "webinterface" donde su función es:
 captura datos(), no valido() y redirigir().
 
-
-```sql
-SELECT * FROM example
-```
-
-```mermaid
-classDiagram
-    class ClassName {
-        String stringName
-        Long longName
-        MyDatatype attributeName
-
-        functionName(parameter) ReturnType
-        functionName2(parameter2) ReturnType
-    }
-    class Interface {
-        Int intName
-    }
-    ClassName --|> Interface
-```
-
-![Descripción de la imagen](/images/picture.jpg)
+![Diagrama](/static/images/diagrama.png)
