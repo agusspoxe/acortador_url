@@ -1,4 +1,99 @@
+import os
 import mysql.connector
+from mysql.connector import errorcode
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
+config = {
+    'host': os.getenv('SERVER'),
+    'port': os.getenv('PORT'),
+    'user': os.getenv('USER'),
+    'password': os.getenv('PASSWORD'),
+    'db': os.getenv('DATABASE'),
+    'raise_on_warnings': True
+}
+
+def demo():
+    try:
+        cnx = mysql.connector.connect(**config)
+
+    except mysql.connector.Error as err:
+        if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+            print("Algo está mal con el nombre de usuario o contraseña")
+        elif err.errno == errorcode.ER_BAD_DB_ERROR:
+            print("La base de datos no existe")
+        else:
+            print(err)
+
+    else:
+        print("aqui meteremos el sql")
+
+        cursor = cnx.cursor()
+        consultilla_corta = cursor.execute("""SELECT url_short FROM equipo_a.urls;""")
+        print(cursor)
+        resultado_corta = cursor.fetchone()
+
+        print(f"Hay {len(resultado_corta)} resultados cortos")
+        for resultado in resultado_corta:
+            print(f"url cortita como yo..: {resultado}")
+
+        consultilla_larga = cursor.execute("""SELECT url_large FROM equipo_a.urls;""")
+        resultado_larga = cursor.fetchone()
+
+        print(f"Hay {len(resultado_larga)} resultados largos")
+        for resultado in resultado_larga:
+            print(f"url larguita como turutu..: {resultado}")
+
+        cnx.close()
+
+if __name__ == "__main__":
+    demo()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # try:
 #     connection = mysql.connector.connect(
@@ -28,38 +123,19 @@ import mysql.connector
 
 
 
+   # resultado_larga = cursor.te
 
-import mysql.connector
-from mysql.connector import errorcode
-
-config = {
-    'host': 'localhost',
-    'port': 3306,
-    'user': 'root',
-    'password': 'OjoCuidao',
-    'db': 'equipo_a',
-    'raise_on_warnings': True
-}
-
-try:
-    cnx = mysql.connector.connect(**config)
-
-except mysql.connector.Error as err:
-    if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-        print("Algo está mal con el nombre de usuario o contraseña")
-    elif err.errno == errorcode.ER_BAD_DB_ERROR:
-        print("La base de datos no existe")
-    else:
-        print(err)
-
-else:
-    print("aqui meteremos el sql")
-
-    with cnx.cursor() as cursor:
-        # listamos las urls que tenemos
-        consultilla = cursor.execute("""
-        SELECT * FROM equipo_a.urls;
-        """)
+    # with cnx.cursor() as cursor:
+    #     # listamos las urls que tenemos
+    #     consultilla = cursor.execute("""
+    #     SELECT 
+    #         url_short
+    #     FROM equipo_a.urls;
+    #     """)
+        
+    #     urls = {}
+    #     for (url_corta) in cursor:
+    #         urls[]
 
         # print(consultilla)
     #   with cnx.cursor() as cursor:
@@ -71,6 +147,7 @@ else:
     #     INNER JOIN profesores p ON ap.profesor_id = p.usuario_id
     #     INNER JOIN usuarios u ON p.usuario_id = u.id;
     #     """)
+
 
 #         # Mapeamos el resultado en un diccionario para fácil acceso
 #         aulas = {}
@@ -100,5 +177,3 @@ else:
 #         for alumno in aula['alumnos']:
 #             print(f"  - {alumno}")
 #         print("\n")
-
-    cnx.close()
