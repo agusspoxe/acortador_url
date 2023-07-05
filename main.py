@@ -136,46 +136,84 @@
 
 
 # ·······················································································
+# class Escuchar:
+#     def idToShortURL(id):
+#         map = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+#         shortURL = ""
+
+#         while id > 0:
+#             shortURL += map[id % 62]
+#             id //= 62
+
+#         return shortURL[::-1]
+
+#     def shortURLToId(shortURL):
+#         id = 0
+#         for i in shortURL[::-1]:
+#             val_i = ord(i)
+#             if val_i >= ord("a") and val_i <= ord("z"):
+#                 id = id * 62 + val_i - ord("a")
+#             elif val_i >= ord("A") and val_i <= ord("Z"):
+#                 id = id * 62 + val_i - ord("A") + 26
+#             else:
+#                 id = id * 62 + val_i - ord("0") + 52
+#         return id
+
+#     def main(self):
+#         id = 12345
+#         shortURL = self.idToShortURL(id)
+#         print("Short URL from 12345 is:", shortURL)
+#         print("ID from", shortURL, "is:", self.shortURLToId(shortURL))
+
+
+# if __name__ == "__main__":
+#     escuchar = Escuchar()
+#     escuchar.main()
+
+
+# class BaseDeDatos(Escuchar):
+#     def recuperar_url_larga(self, url_corta):
+#         pass
+
+
+# class Servidor(Escuchar):
+#     def capturar_datos(self, url_larga):
+#         pass
+# ·······················································································
+
+import hashlib
+
+
 class Escuchar:
-    def idToShortURL(id):
-        map = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-        shortURL = ""
+    def acortar(self):
+        url_larga = input("Ingrese la URL larga: ")
+        url_corta = self.generar_url_corta(url_larga)
+        return url_corta
 
-        while id > 0:
-            shortURL += map[id % 62]
-            id //= 62
+    def generar_url_corta(self, url_larga):
+        # Generar un hash MD5 a partir de la URL larga
+        md5_hash = hashlib.md5(url_larga.encode()).hexdigest()
+        url_corta = md5_hash[:5]
+        return url_corta
 
-        return shortURL[::-1]
-
-    def shortURLToId(shortURL):
-        id = 0
-        for i in shortURL[::-1]:
-            val_i = ord(i)
-            if val_i >= ord("a") and val_i <= ord("z"):
-                id = id * 62 + val_i - ord("a")
-            elif val_i >= ord("A") and val_i <= ord("Z"):
-                id = id * 62 + val_i - ord("A") + 26
-            else:
-                id = id * 62 + val_i - ord("0") + 52
-        return id
-
-    def main(self):
-        id = 12345
-        shortURL = self.idToShortURL(id)
-        print("Short URL from 12345 is:", shortURL)
-        print("ID from", shortURL, "is:", self.shortURLToId(shortURL))
+    def recuperar(self):
+        bbdd = BBDD()  # Instancia de la clase BBDD
+        url_corta = input("Ingrese la URL corta: ")
+        url_larga = bbdd.recuperar_url_larga(url_corta)
+        return url_larga
 
 
-if __name__ == "__main__":
-    escuchar = Escuchar()
-    escuchar.main()
+escuchar = Escuchar()
+url_corta = escuchar.acortar()
+print("URL corta:", url_corta)
 
 
-class BaseDeDatos(Escuchar):
+class BBDD:
     def recuperar_url_larga(self, url_corta):
-        pass
+        # Lógica para recuperar la URL larga de la base de datos
+        # Aquí tenemos que implementar la logica para que nos de la url larga
+        # y retornar la URL larga correspondiente
+        return url_larga
 
 
-class Servidor(Escuchar):
-    def capturar_datos(self, url_larga):
-        pass
+# ·······················································································
