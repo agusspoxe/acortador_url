@@ -2,7 +2,7 @@ import os
 import mysql.connector
 from mysql.connector import errorcode
 from dotenv import load_dotenv
-
+# import main
 
 load_dotenv()
 
@@ -14,40 +14,7 @@ config = {
     'db': os.getenv('DATABASE'),
     'raise_on_warnings': True
 }
-
-def demo():
-    try:
-        cnx = mysql.connector.connect(**config)
-
-    except mysql.connector.Error as err:
-        if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-            print("Algo está mal con el nombre de usuario o contraseña")
-        elif err.errno == errorcode.ER_BAD_DB_ERROR:
-            print("La base de datos no existe")
-        else:
-            print(err)
-
-    else:
-        print("aqui meteremos el sql")
-
-        cursor = cnx.cursor()
-        consultilla_corta = cursor.execute("""SELECT url_short FROM equipo_a.urls;""")
-        print(cursor)
-        resultado_corta = cursor.fetchone()
-
-        print(f"Hay {len(resultado_corta)} resultados cortos")
-        for resultado in resultado_corta:
-            print(f"url cortita como yo..: {resultado}")
-
-        consultilla_larga = cursor.execute("""SELECT url_large FROM equipo_a.urls;""")
-        resultado_larga = cursor.fetchone()
-
-        print(f"Hay {len(resultado_larga)} resultados largos")
-        for resultado in resultado_larga:
-            print(f"url larguita como turutu..: {resultado}")
-
-        cnx.close()
-
+ 
 
 def buscar():
     try:
@@ -80,8 +47,45 @@ def buscar():
         cnx.close()
 
 
+def almacenar():
+    try:
+        cnx = mysql.connector.connect(**config)
+
+    except mysql.connector.Error as err:
+        if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+            print("Algo está mal con el nombre de usuario o contraseña")
+        elif err.errno == errorcode.ER_BAD_DB_ERROR:
+            print("La base de datos no existe")
+        else:
+            print(err)
+
+    else:
+
+        # url_corta = input("dame url corta: ")
+        # url_larga = input("dame url larga: ")
+        
+        cursor = cnx.cursor()
+        q_data_guardar = cursor.execute(f"""INSERT INTO `equipo_a`.`urls` (`url_short`, `url_large`)
+            VALUES ('1234a', 'https://docs.hektorprofe.net/python/bases-de-datos-sqlite/consultas-sql-basicas/');
+            """)
+
+        # cursor.commit()
+        # cursor.fetchone()
+
+        # if resultado_larga is not None:
+        #     url_larga = resultado_larga[0]
+        #     print(url_larga)
+        #     print(f"la url larga de {url_corta} es {resultado_larga[0]}")
+        # else:
+        #     print("ESTA URL NO EXISTE")
+
+        cnx.close()
+
+    # return (url_larga, url_corta)
+
 if __name__ == "__main__":
-    buscar()
+    almacenar()
+    # buscar()
     
     # demo()
 
@@ -117,7 +121,38 @@ if __name__ == "__main__":
 
 
 
+# def demo():
+#     try:
+#         cnx = mysql.connector.connect(**config)
 
+#     except mysql.connector.Error as err:
+#         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+#             print("Algo está mal con el nombre de usuario o contraseña")
+#         elif err.errno == errorcode.ER_BAD_DB_ERROR:
+#             print("La base de datos no existe")
+#         else:
+#             print(err)
+
+#     else:
+#         print("aqui meteremos el sql")
+
+#         cursor = cnx.cursor()
+#         consultilla_corta = cursor.execute("""SELECT url_short FROM equipo_a.urls;""")
+#         print(cursor)
+#         resultado_corta = cursor.fetchone()
+
+#         print(f"Hay {len(resultado_corta)} resultados cortos")
+#         for resultado in resultado_corta:
+#             print(f"url cortita como yo..: {resultado}")
+
+#         consultilla_larga = cursor.execute("""SELECT url_large FROM equipo_a.urls;""")
+#         resultado_larga = cursor.fetchone()
+
+#         print(f"Hay {len(resultado_larga)} resultados largos")
+#         for resultado in resultado_larga:
+#             print(f"url larguita como turutu..: {resultado}")
+
+#         cnx.close()
 
 
 
