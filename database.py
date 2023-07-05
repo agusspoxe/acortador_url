@@ -48,8 +48,42 @@ def demo():
 
         cnx.close()
 
+
+def buscar():
+    try:
+        cnx = mysql.connector.connect(**config)
+
+    except mysql.connector.Error as err:
+        if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+            print("Algo está mal con el nombre de usuario o contraseña")
+        elif err.errno == errorcode.ER_BAD_DB_ERROR:
+            print("La base de datos no existe")
+        else:
+            print(err)
+
+    else:
+        print("aqui meteremos el sql a buscar")
+
+        url_corta = input("dame url corta: ")
+        cursor = cnx.cursor()
+        consultilla_larga = cursor.execute(f"""SELECT url_large FROM equipo_a.urls WHERE url_short = "{url_corta}";""")
+        print(cursor)
+  
+        resultado_larga = cursor.fetchone()
+        if resultado_larga is not None:
+            url_larga = resultado_larga[0]
+            print(url_larga)
+            print(f"la url larga de {url_corta} es {resultado_larga[0]}")
+        else:
+            print("ESTA URL NO EXISTE")
+
+        cnx.close()
+
+
 if __name__ == "__main__":
-    demo()
+    buscar()
+    
+    # demo()
 
 
 
