@@ -63,8 +63,9 @@ def almacenar(url_corta, url_larga):
     else:
 
         # url_corta = input("dame url corta: ")
-        print(url_corta)
-        url_larga = input("dame url larga: ")
+
+        
+        # url_larga = input("dame url larga: ")
         
         cursor = cnx.cursor()
         q_data_guardar = (f"""INSERT INTO `equipo_a`.`urls` (`url_short`, `url_large`)
@@ -80,12 +81,10 @@ def almacenar(url_corta, url_larga):
 if __name__ == "__main__":
     # almacenar()
     buscar()
-    
     # url_larga= input("dame url larga: ")
+    # almacenar('1234c',url_larga)
 
 
-    # almacanar('qeqe1', )
-    # demo()
 
 
 

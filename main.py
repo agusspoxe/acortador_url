@@ -1,4 +1,5 @@
 import hashlib
+from acortador import generar_url_corta
 from database import buscar
 from webinterface import action
 
@@ -27,9 +28,13 @@ class BBDD:
         else:
             return None
 
-
-escuchar = Escuchar()
-url_corta = escuchar.acortar()
-print(url_corta)
-print(f"URL corta: https://equipoa.com/{url_corta}")
+url_larga = action()
+print(url_larga)
+url_corta = generar_url_corta('https://www.amazon.es/')
+# print
+# escuchar = Escuchar()
+# url_corta = escuchar.acortar()
+# print(url_corta)
+# print(f"URL corta: https://equipoa.com/{url_corta}")
 url_corta_javier = f"URL corta: https://equipoa.com/{url_corta}"
+print(url_corta_javier)
