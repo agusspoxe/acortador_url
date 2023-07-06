@@ -1,5 +1,5 @@
 import hashlib
-
+from database import buscar
 
 class Escuchar:
     def acortar(self):
@@ -39,4 +39,5 @@ class BBDD:
 
 escuchar = Escuchar()
 url_corta = escuchar.acortar()
-print("URL corta:" "https:equipoa.com//", url_corta)
+print(url_corta)
+print(f"URL corta: https://equipoa.com/{url_corta}")

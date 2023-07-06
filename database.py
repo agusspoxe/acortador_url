@@ -34,20 +34,21 @@ def buscar():
         url_corta = input("dame url corta: ")
         cursor = cnx.cursor()
         consultilla_larga = cursor.execute(f"""SELECT url_large FROM equipo_a.urls WHERE url_short = "{url_corta}";""")
-        print(cursor)
-  
         resultado_larga = cursor.fetchone()
+
         if resultado_larga is not None:
             url_larga = resultado_larga[0]
             print(url_larga)
             print(f"la url larga de {url_corta} es {resultado_larga[0]}")
         else:
             print("ESTA URL NO EXISTE")
+            almacenar(url_corta)
 
+        cursor.close()
         cnx.close()
 
 
-def almacenar():
+def almacenar(url_corta):
     try:
         cnx = mysql.connector.connect(**config)
 
@@ -62,30 +63,23 @@ def almacenar():
     else:
 
         # url_corta = input("dame url corta: ")
-        # url_larga = input("dame url larga: ")
+        print(url_corta)
+        url_larga = input("dame url larga: ")
         
         cursor = cnx.cursor()
-        q_data_guardar = cursor.execute(f"""INSERT INTO `equipo_a`.`urls` (`url_short`, `url_large`)
-            VALUES ('1234a', 'https://docs.hektorprofe.net/python/bases-de-datos-sqlite/consultas-sql-basicas/');
+        q_data_guardar = (f"""INSERT INTO `equipo_a`.`urls` (`url_short`, `url_large`)
+            VALUES ('{url_corta}', '{url_larga}');
             """)
+        cursor.execute(q_data_guardar)
+        cnx.commit()
 
-        # cursor.commit()
-        # cursor.fetchone()
-
-        # if resultado_larga is not None:
-        #     url_larga = resultado_larga[0]
-        #     print(url_larga)
-        #     print(f"la url larga de {url_corta} es {resultado_larga[0]}")
-        # else:
-        #     print("ESTA URL NO EXISTE")
-
+        cursor.close()
         cnx.close()
 
-    # return (url_larga, url_corta)
 
 if __name__ == "__main__":
-    almacenar()
-    # buscar()
+    # almacenar()
+    buscar()
     
     # demo()
 
