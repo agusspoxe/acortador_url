@@ -17,11 +17,11 @@ def generar_url_corta(url_larga):
 
     return url_corta
 
-def generar_url_corta(url, longitud):
-    caracteres = string.ascii_letters + string.digits  # Letras y números
-    cadena_hash = generar_cadena_hash(url, longitud)
+# def generar_url_corta(url, longitud):
+#     caracteres = string.ascii_letters + string.digits  # Letras y números
+#     cadena_hash = generar_cadena_hash(url, longitud)
     
-    return f"https://equipo.a/{cadena_hash}"
+#     return f"https://equipo.a/{cadena_hash}"
 
 def prueba():
 

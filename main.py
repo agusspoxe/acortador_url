@@ -1,6 +1,7 @@
 import hashlib
 from database import buscar
-from
+from webinterface import action
+
 class Escuchar:
 
 
@@ -31,3 +32,4 @@ escuchar = Escuchar()
 url_corta = escuchar.acortar()
 print(url_corta)
 print(f"URL corta: https://equipoa.com/{url_corta}")
+url_corta_javier = f"URL corta: https://equipoa.com/{url_corta}"
