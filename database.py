@@ -42,13 +42,13 @@ def buscar():
             print(f"la url larga de {url_corta} es {resultado_larga[0]}")
         else:
             print("ESTA URL NO EXISTE")
-            almacenar(url_corta)
+            # almacenar(url_corta)
 
         cursor.close()
         cnx.close()
 
 
-def almacenar(url_corta):
+def almacenar(url_corta, url_larga):
     try:
         cnx = mysql.connector.connect(**config)
 
@@ -81,6 +81,10 @@ if __name__ == "__main__":
     # almacenar()
     buscar()
     
+    # url_larga= input("dame url larga: ")
+
+
+    # almacanar('qeqe1', )
     # demo()
 
 

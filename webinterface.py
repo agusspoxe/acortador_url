@@ -10,10 +10,12 @@ def index():
 
 @app.route("/action", methods=["POST"])
 def action():
-    red = request.form.get("red")
+    url_larga = request.form.get("url")
+
+    url_corta = acortar(url_larga)
     print("POST HRRRERRR")
 
-    return {"respuesta": "brrrrrrrr"}
+    return {"respuesta": url_corta}
 
     # return render_template('action.html', red=red)
 

@@ -1,19 +1,9 @@
 import hashlib
 from database import buscar
-
+from
 class Escuchar:
-    def acortar(self):
-        url_larga = input("Ingrese la URL larga: ")
-        url_corta = self.generar_url_corta(url_larga)
-        bbdd = BBDD()  # Instancia de la clase BBDD
-        bbdd.guardar_url(url_corta, url_larga)
-        return url_corta
 
-    def generar_url_corta(self, url_larga):
-        # Generar un hash MD5 a partir de la URL larga
-        md5_hash = hashlib.md5(url_larga.encode()).hexdigest()
-        url_corta = md5_hash[:5]
-        return url_corta
+
 
     def recuperar(self):
         bbdd = BBDD()  # Instancia de la clase BBDD
