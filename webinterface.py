@@ -13,6 +13,11 @@ def index():
     return render_template("index.html")
 
 
+@app.route("/404", methods=("GET", "POST"))
+def error():
+    return render_template("error.html")
+
+
 @app.route("/escuchar_url_larga", methods=["POST"])
 def action():
     url_larga = request.json["url_larga"]
