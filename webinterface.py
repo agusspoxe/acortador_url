@@ -4,6 +4,11 @@ from acortador import generar_url_corta
 from database import almacenar
 from database import buscar
 
+from diccionario import traducciones
+
+
+txt = traducciones["es"]
+
 
 app = Flask(__name__, template_folder="templates")
 
@@ -15,7 +20,11 @@ def index():
 
 @app.route("/404", methods=("GET", "POST"))
 def error():
-    return render_template("error.html")
+    return render_template(
+        "error.html",
+        TEXT_0=txt["TEXT_0"],
+        TEXT_1=txt["TEXT_1"],
+    )
 
 
 @app.route("/escuchar_url_larga", methods=["POST"])
