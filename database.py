@@ -2,19 +2,20 @@ import os
 import mysql.connector
 from mysql.connector import errorcode
 from dotenv import load_dotenv
+
 # import main
 
-load_dotenv()
+load_dotenv(override=True)
 
 config = {
-    'host': os.getenv('SERVER'),
-    'port': os.getenv('PORT'),
-    'user': os.getenv('USER'),
-    'password': os.getenv('PASSWORD'),
-    'db': os.getenv('DATABASE'),
-    'raise_on_warnings': True
+    "host": os.getenv("SERVER"),
+    "port": os.getenv("PORT"),
+    "user": os.getenv("USER"),
+    "password": os.getenv("PASSWORD"),
+    "db": os.getenv("DATABASE"),
+    "raise_on_warnings": True,
 }
- 
+
 
 def buscar():
     try:
@@ -23,6 +24,7 @@ def buscar():
     except mysql.connector.Error as err:
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
             print("Algo está mal con el nombre de usuario o contraseña")
+            print(err)
         elif err.errno == errorcode.ER_BAD_DB_ERROR:
             print("La base de datos no existe")
         else:
@@ -32,7 +34,9 @@ def buscar():
         url_corta = input("dame url corta: ")
         if len(url_corta) == 5:
             cursor = cnx.cursor()
-            consultilla_larga = cursor.execute(f"""SELECT url_large FROM equipo_a.urls WHERE url_short = "{url_corta}";""")
+            consultilla_larga = cursor.execute(
+                f"""SELECT url_large FROM equipo_a.urls WHERE url_short = "{url_corta}";"""
+            )
             resultado_larga = cursor.fetchone()
 
             if resultado_larga is not None:
@@ -48,8 +52,6 @@ def buscar():
             print("URL NO VÁLIDA!!! LISTILLO")
 
 
-
-
 def almacenar(url_corta, url_larga):
     try:
         cnx = mysql.connector.connect(**config)
@@ -63,16 +65,14 @@ def almacenar(url_corta, url_larga):
             print(err)
 
     else:
-
         # url_corta = input("dame url corta: ")
 
-        
         # url_larga = input("dame url larga: ")
-        
+
         cursor = cnx.cursor()
-        q_data_guardar = (f"""INSERT INTO `equipo_a`.`urls` (`url_short`, `url_large`)
+        q_data_guardar = f"""INSERT INTO `equipo_a`.`urls` (`url_short`, `url_large`)
             VALUES ('{url_corta}', '{url_larga}');
-            """)
+            """
         cursor.execute(q_data_guardar)
         cnx.commit()
 
@@ -85,39 +85,6 @@ if __name__ == "__main__":
     buscar()
     # url_larga= input("dame url larga: ")
     # almacenar('1234c',url_larga)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # def demo():
@@ -154,15 +121,6 @@ if __name__ == "__main__":
 #         cnx.close()
 
 
-
-
-
-
-
-
-
-
-
 # try:
 #     connection = mysql.connector.connect(
 #         host = 'localhost',
@@ -189,32 +147,30 @@ if __name__ == "__main__":
 ############################################################################
 
 
+# resultado_larga = cursor.te
 
+# with cnx.cursor() as cursor:
+#     # listamos las urls que tenemos
+#     consultilla = cursor.execute("""
+#     SELECT
+#         url_short
+#     FROM equipo_a.urls;
+#     """)
 
-   # resultado_larga = cursor.te
+#     urls = {}
+#     for (url_corta) in cursor:
+#         urls[]
 
-    # with cnx.cursor() as cursor:
-    #     # listamos las urls que tenemos
-    #     consultilla = cursor.execute("""
-    #     SELECT 
-    #         url_short
-    #     FROM equipo_a.urls;
-    #     """)
-        
-    #     urls = {}
-    #     for (url_corta) in cursor:
-    #         urls[]
-
-        # print(consultilla)
-    #   with cnx.cursor() as cursor:
-    #     # Consulta para obtener todas las aulas y sus profesores
-    #     cursor.execute("""
-    #     SELECT a.id, a.nombre, u.nombre, u.apellido, u.correo
-    #     FROM aulas a
-    #     INNER JOIN aulas_profesores ap ON a.id = ap.aula_id
-    #     INNER JOIN profesores p ON ap.profesor_id = p.usuario_id
-    #     INNER JOIN usuarios u ON p.usuario_id = u.id;
-    #     """)
+# print(consultilla)
+#   with cnx.cursor() as cursor:
+#     # Consulta para obtener todas las aulas y sus profesores
+#     cursor.execute("""
+#     SELECT a.id, a.nombre, u.nombre, u.apellido, u.correo
+#     FROM aulas a
+#     INNER JOIN aulas_profesores ap ON a.id = ap.aula_id
+#     INNER JOIN profesores p ON ap.profesor_id = p.usuario_id
+#     INNER JOIN usuarios u ON p.usuario_id = u.id;
+#     """)
 
 
 #         # Mapeamos el resultado en un diccionario para fácil acceso
