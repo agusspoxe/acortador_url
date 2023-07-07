@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, url_for, flash, redirect
 from random import randint
 from acortador import generar_url_corta
 from database import almacenar
+from database import buscar
+
 
 
 app = Flask(__name__, template_folder="templates")

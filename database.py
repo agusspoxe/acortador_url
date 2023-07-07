@@ -29,23 +29,25 @@ def buscar():
             print(err)
 
     else:
-        print("aqui meteremos el sql a buscar")
-
         url_corta = input("dame url corta: ")
-        cursor = cnx.cursor()
-        consultilla_larga = cursor.execute(f"""SELECT url_large FROM equipo_a.urls WHERE url_short = "{url_corta}";""")
-        resultado_larga = cursor.fetchone()
+        if len(url_corta) == 5:
+            cursor = cnx.cursor()
+            consultilla_larga = cursor.execute(f"""SELECT url_large FROM equipo_a.urls WHERE url_short = "{url_corta}";""")
+            resultado_larga = cursor.fetchone()
 
-        if resultado_larga is not None:
-            url_larga = resultado_larga[0]
-            print(url_larga)
-            print(f"la url larga de {url_corta} es {resultado_larga[0]}")
+            if resultado_larga is not None:
+                url_larga = resultado_larga[0]
+                print(url_larga)
+                print(f"la url larga de {url_corta} es {resultado_larga[0]}")
+            else:
+                print("ESTA URL NO EXISTE")
+                # almacenar(url_corta)
+            cursor.close()
+            cnx.close()
         else:
-            print("ESTA URL NO EXISTE")
-            # almacenar(url_corta)
+            print("URL NO VÁLIDA!!! LISTILLO")
 
-        cursor.close()
-        cnx.close()
+
 
 
 def almacenar(url_corta, url_larga):
