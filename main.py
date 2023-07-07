@@ -28,9 +28,9 @@ class BBDD:
         else:
             return None
 
-url_larga = action()
-print(url_larga)
-url_corta = generar_url_corta('https://www.amazon.es/')
+# url_larga = action()
+# print(url_larga)
+url_corta = generar_url_corta('https://www.pepito.com/jjdjdf/oijfdsoj/')
 # print
 # escuchar = Escuchar()
 # url_corta = escuchar.acortar()
