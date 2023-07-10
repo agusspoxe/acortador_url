@@ -53,6 +53,18 @@ button {
     color: rgb(0, 0, 0);
 }
 
+.hidden {
+    display: none;
+}
+
+.error {
+    color: crimson;
+}
+
+.disabled {
+    background-color: #777777;
+}
+
 #shortened-url {
     text-align: center;
     font-size: 16px;
