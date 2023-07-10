@@ -17,7 +17,7 @@ config = {
 }
 
 
-def buscar():
+def buscar(url_corta):
     try:
         cnx = mysql.connector.connect(**config)
 
@@ -31,7 +31,7 @@ def buscar():
             print(err)
 
     else:
-        url_corta = input("dame url corta: ")
+        # url_corta = input("dame url corta: ")
         if len(url_corta) == 5:
             cursor = cnx.cursor()
             consultilla_larga = cursor.execute(
@@ -51,6 +51,7 @@ def buscar():
         else:
             print("URL NO VÁLIDA!!! LISTILLO")
 
+        return url_larga
 
 def almacenar(url_corta, url_larga):
     try:

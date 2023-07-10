@@ -43,8 +43,10 @@ def action():
 @app.route("/<string:codigo>", methods=["GET"])
 def redirigir(codigo):
     print(codigo)
-    return redirect("http://www.example.com", code=302)
-
+    url_larga = buscar(codigo)
+    print(url_larga)
+    return redirect(url_larga, code=302)
+    # return redirect("http://www.example.com", code=302)
 
 # run the application
 if __name__ == "__main__":
