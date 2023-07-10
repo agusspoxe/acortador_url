@@ -25,9 +25,12 @@
         <button type="submit" id="btn_submit">Acortar</button>
     </form>
 
-    <h3>URL acortada:</h3>
-    <p id="url_acortada_generada"></p>
+    <h3 id="url_acortada_error" class="hidden error">URL invalida</h3>
+    <h3 id="url_acortada_title" class="hidden">URL acortada:</h3>
 
+    <p>
+        <a id="url_acortada_generada" href="" target="blank"></a>
+    </p>
     <script type="text/javascript" src="{{ url_for('static', filename='js/javascript.js') }}"></script>
 </body>
 

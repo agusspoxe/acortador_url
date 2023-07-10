@@ -8,12 +8,8 @@ from database import buscar
 
 load_dotenv()
 
-config = {
-    'host': os.getenv('SERVER'),
-    'portweb': os.getenv('PORTWEB')
+config = {"host": os.getenv("SERVER"), "portweb": os.getenv("PORTWEB")}
 
-}
- 
 
 app = Flask(__name__, template_folder="templates")
 
@@ -47,6 +43,7 @@ def redirigir(codigo):
     print(url_larga)
     return redirect(url_larga, code=302)
     # return redirect("http://www.example.com", code=302)
+
 
 # run the application
 if __name__ == "__main__":
